@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 
-function About() {
+function AboutPage() {
     return (
         <div>
             <Typography variant="h5" gutterBottom component="div">
@@ -10,4 +10,4 @@ function About() {
     )
 }
 
-export default About;
+export default AboutPage;

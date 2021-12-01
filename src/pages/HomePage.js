@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function Home() {
+function HomePage() {
     const id = 3
     return (
         <div>
@@ -15,4 +15,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default HomePage;

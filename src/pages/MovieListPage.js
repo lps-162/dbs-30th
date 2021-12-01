@@ -7,32 +7,24 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const moviesData = [
-    {
-        id: 1,
-        name: "Thalapathy",
-        director: "Manirathnam",
-        artists: "Rajinikanth, Mamooty"
-    },
-    {
-        id: 2,
-        name: "Jai Bhim",
-        director: "TJ Gnanavel",
-        artists: "Surya"
-    },
-    {
-        id: 3,
-        name: "Janatha Garage",
-        director: "Kortala Shiva",
-        artists: "NTR, Mohanlal"
-    }
-]
 
-function MovieListPage() {
-    const [movies, setMovies] = useState(moviesData)
+function MovieList() {
+    const [movies, setMovies] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/movies")
+            .then(res => {
+                setMovies(res.data)
+            })
+            .catch(err => {
+                console.log("Could not fetch movies", err)
+            })
+    }, [])
+
 
     const getRowTags = () => {
         const rowTags = movies.map((movie) => (
@@ -56,6 +48,9 @@ function MovieListPage() {
     return (
         <>
             <h3>List of Movies</h3>
+            <Link to={"/movies/create"}>
+                Create New Movie
+            </Link>
             <Grid container>
                 <Grid>
                     <TableContainer component={Paper}>
@@ -70,7 +65,7 @@ function MovieListPage() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {getRowTags()}
+                                {movies.length > 0 ? getRowTags() : <p>No Rows Found</p>}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -80,4 +75,4 @@ function MovieListPage() {
         </>
     )
 }
-export default MovieListPage;
+export default MovieList;

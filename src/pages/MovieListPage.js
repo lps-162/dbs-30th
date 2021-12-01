@@ -11,18 +11,29 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 function MovieList() {
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
-    useEffect(() => {
+    const loadMovies = () => {
         axios.get("http://localhost:8080/movies")
             .then(res => {
+                setLoading(false)
                 setMovies(res.data)
             })
             .catch(err => {
-                console.log("Could not fetch movies", err)
+                setLoading(false)
+                setError(true)
             })
+    }
+    useEffect(() => {
+        setTimeout(loadMovies, 200)
     }, [])
 
 
@@ -45,12 +56,8 @@ function MovieList() {
         return rowTags;
     }
 
-    return (
-        <>
-            <h3>List of Movies</h3>
-            <Link to={"/movies/create"}>
-                Create New Movie
-            </Link>
+    const getMoviesGrid = () => {
+        return (
             <Grid container>
                 <Grid>
                     <TableContainer component={Paper}>
@@ -70,8 +77,39 @@ function MovieList() {
                         </Table>
                     </TableContainer>
                 </Grid>
-
             </Grid>
+        )
+    }
+
+    const getProgressTag = () => {
+        return (
+            <Box sx={{ display: 'flex' }}>
+                Loading Movies .... <CircularProgress />
+            </Box>
+        )
+    }
+
+    const getErrorTag = () => {
+        return (
+            <Box sx={{ display: 'flex' }}>
+                <Alert severity="error">
+                    <AlertTitle>Error Loading Movies</AlertTitle>
+                    Pls check with admin
+                </Alert>
+            </Box>
+            
+        )
+    }
+
+    return (
+        <>
+            <Link to={"/movies/create"}>
+                Create New Movie
+            </Link>
+            <h3>List of Movies</h3>
+            { loading && getProgressTag()}
+            { movies && getMoviesGrid()}
+            { error && getErrorTag() } 
         </>
     )
 }

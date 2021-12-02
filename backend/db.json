@@ -1,37 +1,36 @@
 {
-    "movies": [
-        {
-            "id": 1,
-            "name": "Thalapathy",
-            "director": "Manirathnam",
-            "artists": "Rajinikanth, Mamooty",
-            "posterImg": "https://cdn.pixabay.com/photo/2016/10/16/01/05/digital-1744118_1280.jpg",
-            "description": "The plot of Thalapathi is based on the friendship between Karna and Duryodhana, characters from the Hindu epic, Mahabharata. Ilaiyaraaja, in his last collaboration with Ratnam, composed the film's score and soundtrack, and the lyrics were written by poet Vaali."
-        },
-        {
-            "id": 2,
-            "name": "Jai Bhim",
-            "director": "TJ Gnanavel",
-            "artists": "Surya",
-            "posterImg": "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450_1280.jpg",
-            "description": ""
-        },
-        {
-            "id": 3,
-            "name": "Janatha Garage",
-            "director": "Kortala Shiva",
-            "artists": "NTR, Mohanlal",
-            "posterImg": "https://cdn.pixabay.com/photo/2017/01/27/16/36/love-2013497_1280.png",
-            "description": ""
-        },
-        {
-            "id": 4,
-            "name": "Nayagan",
-            "director": "Manirathnam",
-            "artists": "Kamal Hassan, Janagaraj",
-            "posterImg": "https://cdn.pixabay.com/photo/2015/06/30/08/07/lens-826308_1280.jpg",
-            "description": ""
-        }
-    ]
+  "movies": [
+    {
+      "id": 1,
+      "name": "Thalapathy",
+      "director": "Manirathnam",
+      "artists": "Rajinikanth, Mamooty",
+      "posterImg": "https://cdn.pixabay.com/photo/2016/10/16/01/05/digital-1744118_1280.jpg",
+      "description": "The plot of Thalapathi is based on the friendship between Karna and Duryodhana, characters from the Hindu epic, Mahabharata. Ilaiyaraaja, in his last collaboration with Ratnam, composed the film's score and soundtrack, and the lyrics were written by poet Vaali."
+    },
+    {
+      "id": 2,
+      "name": "Jai Bhim",
+      "director": "TJ Gnanavel",
+      "artists": "Surya",
+      "posterImg": "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450_1280.jpg",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "name": "Janatha Garage",
+      "director": "Kortala Shiva",
+      "artists": "NTR, Mohanlal",
+      "posterImg": "https://cdn.pixabay.com/photo/2017/01/27/16/36/love-2013497_1280.png",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "name": "Nayagan",
+      "director": "Manirathnam",
+      "artists": "Kamal Hassan, Janagaraj",
+      "posterImg": "https://cdn.pixabay.com/photo/2015/06/30/08/07/lens-826308_1280.jpg",
+      "description": ""
+    }
+  ]
 }
-

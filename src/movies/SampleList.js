@@ -31,6 +31,10 @@ class SampleList extends Component {
 
     }
 
+    shouldComponentUpdate(newState, newProps) {
+        
+    }
+
     getLiTags = () => {
         const liTags = this.state.movies.map(m => <li key={m.id}>{m.name}</li>)
         return liTags

@@ -5,8 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, collection }) {
   return (
     <Card sx={{ maxWidth: 400 }}>
       <CardMedia
@@ -36,3 +37,8 @@ export default function MovieCard({ movie }) {
     </Card>
   );
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.object,
+  collection: PropTypes.object.isRequired
+};

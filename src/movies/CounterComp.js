@@ -5,10 +5,6 @@ class CounterComp extends Component {
         count: 0
     }
 
-    constructor(props) {
-        super(props)
-    }
-
     componentDidMount() {
         console.log("Mounted")
         document.title = `You clicked ${this.state.count} times`;

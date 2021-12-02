@@ -30,7 +30,7 @@ function MovieDetails() {
             <Box sx={{
                 margin: "10px"
             }}>
-                { movie && <MovieCard movie={movie} collection={78}/> }
+                { movie && <MovieCard movie={movie} collection={{ boxOffice : 90, international: 300 }}/> }
             </Box>
         </>
     )

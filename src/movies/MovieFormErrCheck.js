@@ -2,60 +2,64 @@ import Box from '@mui/material/Box';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
-
-function MovieFormErrCheck() {
+function MovieForm() {
     const [name, setName] = useState('')
     const [director, setDirector] = useState('')
     const [artists, setArtists] = useState('')
+    const [errors, setErrors] = useState([])
     
-    const [nameError, setNameError] = useState('')
-    const [directorError, setDirectorError] = useState('')
-    const [artistsError, setArtistsError] = useState('')
-
     const navigate = useNavigate()
 
+    // const handleChange = (e) => {
+    //     console.log(e.target.name)
+    //     switch(e.target.name) {
+    //         case "name":
+    //             setName(e.target.value)
+    //             break;
+    //         case "director":
+    //             setDirector(e.target.value)
+    //             break
+    //         case "artists":
+    //             setArtists(e.target.value)
+    //     }
         
     // }
     const handleNameChange = (e) => {
         setName(e.target.value)
-        setNameError('')
     }
 
     const handleDirectorChange = (e) => {
         setDirector(e.target.value)
-        setDirectorError('')
     }
 
     const handleArtistsChange = (e) => {
         setArtists(e.target.value)
-        setArtistsError('')
-    }
-
-    const validateData = () => {
-        let isValid = true
-
-        if (name === null || name === "") {
-            setNameError("Name cannot be empty")
-            isValid = false
-        }
-        if (director === null || director === "") {
-            setDirectorError("Director cannot be empty")
-            isValid = false
-        }
-        if (artists === null || artists === "") {
-            setArtistsError("Artists cannot be empty")
-            isValid = false
-        }
-        return isValid
     }
 
     const submitMovie = () => {
-        const isValid = validateData()
-        
+        let isValid = true
+        let errors = []
+
+        if (name === null || name === "") {
+            errors.push("Name cannot be empty")
+            isValid = false
+        }
+        if (director === null || director === "") {
+            errors.push("Director cannot be empty")
+            isValid = false
+        }
+        if (artists === null || artists === "") {
+            errors.push("Artists cannot be empty")
+            isValid = false
+        }
         if (!isValid) {
+            setErrors(errors)
             return
         };
+
         // get form data
         const movie = { name, director, artists }
 
@@ -70,6 +74,18 @@ function MovieFormErrCheck() {
             })
     }
 
+    const getErrorTag = () => {
+        return (
+            <Box sx={{ display: 'flex' }}>
+                <Alert severity="error">
+                    <AlertTitle>Invalid Movie Data</AlertTitle>
+                        {errors.map(e => <li>{e}</li>)}
+                </Alert>
+            </Box>
+            
+        )
+    }
+
     return (
         <Box sx={{
             margin: "10px"
@@ -78,23 +94,20 @@ function MovieFormErrCheck() {
             <h3>
                 Create New Movie Page
             </h3>
-        
+            {errors.length>0 && getErrorTag()}
             <div>
                 <label>Enter Name : </label>
                 <input type="text" name="name" value={name} onChange={handleNameChange} />
-                <label className="errorLabel">{nameError}</label>
             </div>
 
             <div>
                 <label>Enter Director : </label>
                 <input type="text" name="director" value={director} onChange={handleDirectorChange} />
-                <label className="errorLabel">{directorError}</label>
             </div>
 
             <div>
                 <label>Enter Artists : </label>
                 <input type="text" name="artists" value={artists} onChange={handleArtistsChange} />
-                <label className="errorLabel">{artistsError}</label>
             </div>
 
             <button onClick={submitMovie}>Create Movie</button>
@@ -102,4 +115,4 @@ function MovieFormErrCheck() {
     )
 }
 
-export default MovieFormErrCheck;
+export default MovieForm;

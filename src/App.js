@@ -4,7 +4,7 @@ import ButtonAppBar from "./common/AppBar";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import MovieForm from "./movies/MovieForm";
+import MatMovieForm from "./movies/MatMovieForm";
 import SampleList from "./movies/SampleList";
 import CounterComp from "./movies/CounterComp";
 
@@ -17,7 +17,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/movies" element={<MovieListPage />} />
         <Route path="/movies/:movieId" element={<MovieDetails />} />
-        <Route path="/movies/create" element={<MovieForm />} />
+        <Route path="/movies/create" element={<MatMovieForm />} />
         <Route path="/sample" element={<SampleList />} />
         <Route path="/counter" element={<CounterComp />} />
       </Routes>

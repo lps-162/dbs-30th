@@ -9,10 +9,14 @@ import SampleList from "./movies/SampleList";
 import CounterComp from "./movies/CounterComp";
 import MovieEditForm from "./movies/MovieEditForm";
 import Box from '@mui/material/Box';
+import AuthContextProvider from "./contexts/AuthContext";
+import NotFound from "./common/NotFound";
+import ArtistsListPage from "./pages/ArtistsListPage";
 
 function App() {
   return (
     <div>
+        <AuthContextProvider>
         <ButtonAppBar />
         <Box sx={{ margin: "20px" }}>
           <Routes>
@@ -22,10 +26,15 @@ function App() {
             <Route path="/movies/:movieId" element={<MovieDetails />} />
             <Route path="/movies/:movieId/edit" element={<MovieEditForm />} />
             <Route path="/movies/create" element={<MatMovieForm />} />
+
+            <Route path="/artists" element={<ArtistsListPage />} />
+
             <Route path="/sample" element={<SampleList />} />
             <Route path="/counter" element={<CounterComp />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Box>
+        </AuthContextProvider>
     </div>
   );
 }

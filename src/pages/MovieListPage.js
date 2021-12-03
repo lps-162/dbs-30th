@@ -15,6 +15,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 function MovieList() {
     const [movies, setMovies] = useState(null)
@@ -37,6 +39,21 @@ function MovieList() {
     }, [])
 
 
+    const deleteMovie = (id) => {
+        axios.delete("http://localhost:8080/movies/" + id)
+            .then(res => {
+                console.log("Deletition successful")
+                // const newMovies = movies.filter(m => m.id != id)
+                // setMovies(newMovies)
+                axios.get("http://localhost:8080/movies")
+                    .then(res => setMovies(res.data))
+                    .catch(err => console.log("Error occured, pls refresh"))
+            })
+            .catch(err => {
+                console.log("Error, couldnt delete")
+            })
+    }
+    
     const getRowTags = () => {
         const rowTags = movies.map((movie) => (
             <TableRow key={movie.id}>
@@ -48,8 +65,20 @@ function MovieList() {
                 <TableCell align="right">{movie.artists}</TableCell>
                 <TableCell align="right">
                     <Link to={"/movies/" + movie.id}>
-                        Show Details
+                        Show
                     </Link>
+                    &nbsp;&nbsp;
+                    <Link to={"/movies/" + movie.id + "/edit"}>
+                        Edit
+                    </Link>
+                    &nbsp;&nbsp;
+                    {/* <DeleteIcon sx={{ color: pink[500] }} /> */}
+                    <IconButton aria-label="delete" 
+                                size="small" 
+                                color="secondary"
+                                onClick={() => deleteMovie(movie.id)}>
+                        <DeleteIcon />
+                    </IconButton>
                 </TableCell>
             </TableRow>
         ))
@@ -102,7 +131,9 @@ function MovieList() {
     }
 
     return (
-        <>
+        <Box sx={{
+            margin: "20px"
+            }}>
             <Link to={"/movies/create"}>
                 Create New Movie
             </Link>
@@ -110,7 +141,7 @@ function MovieList() {
             { loading && getProgressTag()}
             { movies && getMoviesGrid()}
             { error && getErrorTag() } 
-        </>
+        </Box>
     )
 }
 export default MovieList;

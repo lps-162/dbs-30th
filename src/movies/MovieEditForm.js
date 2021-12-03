@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { useState, useEffect } from 'react';
 
 const movieValidationSchema = yup.object({
     name: yup
@@ -32,8 +33,10 @@ const initialValues = {
     artists: ''
 }
 
-function MatMovieForm() {
+function MovieEditForm() {
     const navigate = useNavigate()
+    const params = useParams()
+    const [dataLoaded, setDataLoaded] = useState(false)
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -41,7 +44,7 @@ function MatMovieForm() {
         onSubmit: values => {
             console.log(values)
             // axios post
-            axios.post("http://localhost:8080/movies", values)
+            axios.patch("http://localhost:8080/movies/" + params.movieId, values)
                 .then(res => {
                     console.log(res)
                     navigate("/movies/" + res.data.id)
@@ -52,13 +55,26 @@ function MatMovieForm() {
         }
     })
 
+    useEffect(() => {
+        axios.get("http://localhost:8080/movies/" + params.movieId)
+            .then(res => {
+                formik.setValues(res.data)
+                setDataLoaded(true)
+            })
+            .catch(err => {
+                console.log("Error fetching data")
+            })
+    }, [])
+
+    
+
     return (
         <>
             <Box sx={{ height: 50 }}></Box>
             <Typography variant="h4" gutterBottom component="div">
-                Create New Movie
+                Edit Movie Details
             </Typography>
-            <Box
+            {dataLoaded && <Box
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '50ch' },
@@ -101,11 +117,11 @@ function MatMovieForm() {
                     />
                 </div>
                 <div>
-                    <Button variant="contained" onClick={formik.handleSubmit}>Create New Movie</Button>
+                    <Button variant="contained" onClick={formik.handleSubmit}>Update Movie</Button>
                 </div>
-            </Box>
+            </Box>}
         </>
     )
 }
 
-export default MatMovieForm;
+export default MovieEditForm;

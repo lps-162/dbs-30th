@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 
-export default function MovieCard({ movie, collection }) {
+export default function MovieCard({ movie, collection, children }) {
   return (
     <Card sx={{ maxWidth: 400 }}>
       <CardMedia
@@ -29,11 +29,15 @@ export default function MovieCard({ movie, collection }) {
         <Typography variant="body2" color="text.secondary">
          {movie.description}
         </Typography>
+        <Typography variant="body2" color="text.secondary">
+         {children}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Like</Button>
         <Button size="small">Goto Jukebox in Youtube</Button>
       </CardActions>
+      
     </Card>
   );
 }

@@ -9,14 +9,6 @@
       "description": "The plot of Thalapathi is based on the friendship between Karna and Duryodhana, characters from the Hindu epic, Mahabharata. Ilaiyaraaja, in his last collaboration with Ratnam, composed the film's score and soundtrack, and the lyrics were written by poet Vaali."
     },
     {
-      "id": 2,
-      "name": "Jai Bhim",
-      "director": "TJ Gnanavel",
-      "artists": "Surya",
-      "posterImg": "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450_1280.jpg",
-      "description": ""
-    },
-    {
       "id": 3,
       "name": "Janatha Garage",
       "director": "Kortala Shiva",
@@ -31,6 +23,12 @@
       "artists": "Kamal Hassan, Janagaraj",
       "posterImg": "https://cdn.pixabay.com/photo/2015/06/30/08/07/lens-826308_1280.jpg",
       "description": ""
+    },
+    {
+      "name": "Titanic Reloaded",
+      "director": "James Cameroon 222",
+      "artists": "Kate, Leo 333",
+      "id": 5
     }
   ]
 }
